@@ -407,6 +407,10 @@ func (s *snapshotter) createSnapshot(ctx context.Context, kind snapshots.Kind, k
 			}
 		}
 
+		if sizeInBytes == 0 {
+			sizeInBytes = 100 * 1024 * 1024 * 1024
+		}
+
 		var makeUVMScratch bool
 		if _, ok := snapshotInfo.Labels[uvmScratchLabel]; ok {
 			makeUVMScratch = true
